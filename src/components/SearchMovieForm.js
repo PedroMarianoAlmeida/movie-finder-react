@@ -6,8 +6,7 @@ const SearchMovieForm = () => {
     const [finalNameToSearch, setFinalNameToSearch] = useState("");
     
     const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(nameToSearch);
+        e.preventDefault();        
         setNameToSearch("");
         setFinalNameToSearch(nameToSearch);
     }
