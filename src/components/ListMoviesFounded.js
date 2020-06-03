@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import { IdMovieContext } from '../contexts/IdMovieContext';
+import { NavLink } from 'react-router-dom'
 
 const ListMoviesFounded = (props) => {     
     const [movieList, setMovieList] = useState([]);
@@ -26,7 +27,14 @@ const ListMoviesFounded = (props) => {
 
     const toRender = () => {
         if(responseAPI === 'False') { return(<li>Movie not found!</li>) };
-        return movieList.map( movie =>  <li key={movie.imdbID} id={movie.imdbID} onClick={handleClick}> {movie.Title} </li> );
+        return movieList.map( movie =>  { 
+            return (
+                <NavLink to="/details" key={movie.imdbID}>
+                    <li id={movie.imdbID} onClick={handleClick}>
+                        {movie.Title}
+                    </li>
+                </NavLink>
+            )});
     }
     
     return (
