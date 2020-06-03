@@ -1,8 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+import { IdMovieContext } from '../contexts/IdMovieContext';
 
 const ListMoviesFounded = (props) => {     
     const [movieList, setMovieList] = useState([]);
     const [responseAPI, setResponseAPI] = useState(null);
+
+    const { newIdMovie } = useContext(IdMovieContext);
     
     useEffect(() => {
         if (props.name !== "") getMoviesList(props.name);
@@ -14,11 +17,16 @@ const ListMoviesFounded = (props) => {
         setResponseAPI(data.Response)
         if(data.Response === "True") setMovieList(data.Search);
         console.log(data)
-    }  
+    }
+    
+    const handleClick = (e) => {
+        console.log(e.target.id);
+        newIdMovie(e.target.id);
+    }
 
     const toRender = () => {
         if(responseAPI === 'False') { return(<li>Movie not found!</li>) };
-        return movieList.map( movie =>  <li key={movie.imdbID} > {movie.Title} </li> );
+        return movieList.map( movie =>  <li key={movie.imdbID} id={movie.imdbID} onClick={handleClick}> {movie.Title} </li> );
     }
     
     return (

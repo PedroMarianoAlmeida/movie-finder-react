@@ -1,15 +1,20 @@
 import React, {createContext, useState} from 'react';
 
-export const IdMovie = createContext();
+export const IdMovieContext = createContext();
 
 const IdMovieProvider = (props) => {
     
-    const [idMovie, setIdMovie] = useState()
+    const [idMovie, setIdMovie] = useState("");
+
+    const newIdMovie = (id) => {
+        setIdMovie(id);
+        console.log(`ID: ${id}, Context id:${idMovie}`)
+    }
 
     return (
-        <IdMovie.Provider value={setIdMovie}>
+        <IdMovieContext.Provider value={{newIdMovie}}>
             {props.children}
-        </IdMovie.Provider>
+        </IdMovieContext.Provider>
     );
 }
  
