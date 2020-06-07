@@ -12,7 +12,7 @@ const IdMovieProvider = (props) => {
     }
 
     return (
-        <IdMovieContext.Provider value={{newIdMovie}}>
+        <IdMovieContext.Provider value={{ idMovie, newIdMovie }}>
             {props.children}
         </IdMovieContext.Provider>
     );

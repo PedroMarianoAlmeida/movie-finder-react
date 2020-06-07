@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import { IdMovieContext}  from './../contexts/IdMovieContext';
 
 const MovieDetails = () => {
+
+  const { idMovie } = useContext(IdMovieContext);
+  
     return (
-        <h1>Teste</h1>
+      
+    <h1> { idMovie } </h1>
+
       );
 }
  
