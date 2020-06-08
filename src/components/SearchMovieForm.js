@@ -16,7 +16,7 @@ const SearchMovieForm = () => {
     }
 
     return ( 
-        <div>
+        <div className='bg-dark'>
             <form onSubmit={handleSubmit}>
                 <input type="text" placeholder="Name to search" value={nameToSearch}
                 required onChange={handleChange} />
