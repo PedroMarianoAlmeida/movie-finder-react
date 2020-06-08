@@ -21,11 +21,27 @@ const MovieDetails = () => {
   const toRender = () => {
     if(!movieDetails) return <h1 className="mt-5 pt-3">Movie not found!</h1>
     return(
-      <div>
-        <h1>{movieDetails.Title}</h1>
-        <img src={movieDetails.Poster} alt={`${movieDetails.Title} poster`} />
-        <p>{movieDetails.Plot}</p>
+      <div className='mt-5 pt-3 container'>
+        <div className='row justify-content-center'>
+          <div className="col-12 col-lg-6">
+            <h1>{movieDetails.Title} ({movieDetails.Year})</h1>
+            <p>{movieDetails.Plot}</p>
+          </div>
+
+          <div className="col-12 col-lg-6 d-flex justify-content-center">
+            <img src={movieDetails.Poster} alt={`${movieDetails.Title} poster`} className="img-thumbnail"/>
+          </div>
+        </div>
       </div>
+
+
+
+
+
+      
+        
+
+     
     )
   }
 
