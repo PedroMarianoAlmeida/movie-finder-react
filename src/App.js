@@ -8,14 +8,15 @@ import About from './components/About';
 import Footer from './components/Header/Footer';
 import LightDarkModeProvider from './contexts/LightDarkModeContext';
 
-function App() {
-  document.title = "Movie Finder"
-  return (    
-    <div className="App">
-      <div>
-        
-        <BrowserRouter>
-          <LightDarkModeProvider>
+import { useContext } from 'react';
+import { LightDarkModeContext } from './contexts/LightDarkModeContext';
+
+const BodyApp = () => {
+  const { isDarkMode } = useContext(LightDarkModeContext);
+  
+  return ( 
+    <div className={`${isDarkMode? 'bg-secondary': ''}`}>
+        <BrowserRouter>          
             <Header />
             <IdMovieProvider>                 
                                           
@@ -24,10 +25,19 @@ function App() {
               <Route path="/about" component={About} />                
                   
             </IdMovieProvider>
-            <Footer />
-            </LightDarkModeProvider>
+            <Footer />            
         </BrowserRouter>
-      </div>
+    </div>
+   );
+}
+
+function App() {
+  document.title = "Movie Finder"
+  return (    
+    <div className="App">
+      <LightDarkModeProvider>
+        <BodyApp />
+      </LightDarkModeProvider>    
     </div>
   );
 }

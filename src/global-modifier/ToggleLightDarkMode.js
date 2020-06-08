@@ -10,8 +10,8 @@ const ToggleLightDarkMode = () => {
     }
     
     return ( 
-        <button className={`nav-item nav-link mx-1 text-white align-middle btn ${isDarkMode? 'btn-dark' : 'btn-light'}`} onClick={handleClick}>
-            Light Mode
+        <button className={`nav-item nav-link mx-1 align-middle btn ${isDarkMode? 'btn-secondary text-white' : 'btn-light'}`} onClick={handleClick}>
+            {isDarkMode? 'Dark Mode' : 'Light Mode'}
         </button>
      );
 }
