@@ -5,6 +5,7 @@ import IdMovieProvider from './contexts/IdMovieContext';
 import MovieDetails from './components/MovieDetails';
 import Header from './components/Header/Header';
 import About from './components/About';
+import Footer from './components/Header/Footer';
 
 function App() {
   document.title = "Movie Finder"
@@ -21,6 +22,8 @@ function App() {
             <Route path="/about" component={About} />
 
           </IdMovieProvider>
+
+          <Footer />
 
         </BrowserRouter>
       </div>
