@@ -21,7 +21,11 @@ const MovieDetails = () => {
   const toRender = () => {
     if(!movieDetails) return <h1>Movie not found!</h1>
     return(
-      <h1>{movieDetails.Title}</h1>
+      <div>
+        <h1>{movieDetails.Title}</h1>
+        <img src={movieDetails.Poster} alt={`${movieDetails.Title} poster`} />
+        <p>{movieDetails.Plot}</p>
+      </div>
     )
   }
 
