@@ -9,9 +9,9 @@ const MobileHeader = function() {
                 <Link to="/" className="nav-item nav-link mx-1 text-white"> Movie Finder </Link>
             </div>
             <div className='col-1'>
-                <NavDropdown id="navbarMenu">
-                    <NavDropdown.Item> <Link to="/" className="nav-item nav-link mx-1 text-white"> Home </Link> </NavDropdown.Item>
-                    <NavDropdown.Item > <Link to="/about" className="nav-item nav-link mx-1 text-white">About</Link> </NavDropdown.Item>
+                <NavDropdown id="navbarMenu" title="|||">
+                    <NavDropdown.Item> <Link to="/" className="text-dark"> Home </Link> </NavDropdown.Item>
+                    <NavDropdown.Item > <Link to="/about" className="text-dark">About</Link> </NavDropdown.Item>
                 </NavDropdown>
             </div>
         </div>

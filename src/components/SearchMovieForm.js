@@ -16,19 +16,22 @@ const SearchMovieForm = () => {
     }
 
     return ( 
-        <div className='mt-5 pt-3'>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label>Movie/Serie name to search</label>
-                    <input type="text" placeholder="Name to search" value={nameToSearch}
-                    required onChange={handleChange} className="form-text"/>
-                    
-                    <input type="submit" value="Search" />
+        <div className='mt-5 pt-3 container'>
+            <div className='row justify-content-center'>
+                <div className="col-12">
+                    <form onSubmit={handleSubmit} className="d-flex justify-content-center">
+                        <div className="form-group">
+                            <label className="w-100">Movie/Serie name to search</label>
+                            <input type="text" value={nameToSearch}
+                            required onChange={handleChange} className="form-text w-100 text-center"/>
+                            
+                            <input type="submit" value="Search" className="my-2 w-100"/>
+                        </div>
+                    </form>
                 </div>
-            </form>
-            
-            <ListMoviesFounded name={finalNameToSearch} />
-
+                
+                <ListMoviesFounded name={finalNameToSearch} />
+            </div>
         </div>
      );
 }
