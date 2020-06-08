@@ -16,12 +16,15 @@ const SearchMovieForm = () => {
     }
 
     return ( 
-        <div className='bg-dark'>
+        <div className='mt-5 pt-3'>
             <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Name to search" value={nameToSearch}
-                required onChange={handleChange} />
-                
-                <input type="submit" value="Search" />
+                <div className="form-group">
+                    <label>Movie/Serie name to search</label>
+                    <input type="text" placeholder="Name to search" value={nameToSearch}
+                    required onChange={handleChange} className="form-text"/>
+                    
+                    <input type="submit" value="Search" />
+                </div>
             </form>
             
             <ListMoviesFounded name={finalNameToSearch} />
