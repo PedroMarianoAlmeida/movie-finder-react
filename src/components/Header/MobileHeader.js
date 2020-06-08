@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 const MobileHeader = function() {
     return(
         <div className="d-lg-none w-100 row justify-content-between">
-            <div className='col-4'>
+            <div className='col-11'>
                 <Link to="/" className="nav-item nav-link mx-1 text-white"> Movie Finder </Link>
             </div>
             <div className='col-1'>
