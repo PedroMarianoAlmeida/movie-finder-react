@@ -6,7 +6,7 @@ import MobileHeader from './MobileHeader';
 const Header = function() {
     return(
         <div>
-            <nav className="navbar navbar-expand-lg fixed-top bg-dark">
+            <nav className="navbar navbar-expand-lg fixed-top bg-info">
                <DesktopHeader />
                <MobileHeader />
             </nav>
