@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import { IdMovieContext } from '../contexts/IdMovieContext';
 import { NavLink } from 'react-router-dom'
+import Carousel from 'react-bootstrap/Carousel';
 
 const ListMoviesFounded = (props) => {     
     const [movieList, setMovieList] = useState([]);
@@ -26,21 +27,26 @@ const ListMoviesFounded = (props) => {
     }
 
     const toRender = () => {
-        if(responseAPI === 'False') { return(<li>Movie not found!</li>) };
-        return movieList.map( movie =>  { 
-            return (
-                <NavLink to="/details" key={movie.imdbID}>
-                    <li id={movie.imdbID} onClick={handleClick}>
-                        {movie.Title}
-                    </li>
-                </NavLink>
-            )});
+        if(responseAPI === 'False') { return(<h4>Movie not found!</h4>) };
+        return (
+            <Carousel>
+                {movieList.map( movie => {
+                    return (
+                        <Carousel.Item key={movie.imdbID}>
+                           <NavLink to="/details">                                
+                                <img className="" src={movie.Poster} alt={`${movie.Title} poster`} id={movie.imdbID} onClick={handleClick}/>
+                            </NavLink> 
+                        </Carousel.Item>
+                    )
+                })}
+            </Carousel>
+        )
     }
     
     return (
-        <ul>
+        <div>
             {toRender()}
-        </ul>
+        </div>
     );
 }
  

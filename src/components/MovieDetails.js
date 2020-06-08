@@ -19,7 +19,7 @@ const MovieDetails = () => {
   });
 
   const toRender = () => {
-    if(!movieDetails) return <h1>Movie not found!</h1>
+    if(!movieDetails) return <h1 className="mt-5 pt-3">Movie not found!</h1>
     return(
       <div>
         <h1>{movieDetails.Title}</h1>
