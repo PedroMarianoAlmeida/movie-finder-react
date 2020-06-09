@@ -15,7 +15,7 @@ const BodyApp = () => {
   const { isDarkMode } = useContext(LightDarkModeContext);
   
   return ( 
-    <div className={`${isDarkMode? 'bg-secondary': ''}`}>
+    <div className={`${isDarkMode? 'bg-secondary h-100': ''}`}>
         <BrowserRouter>          
             <Header />
             <IdMovieProvider>                 
@@ -34,7 +34,7 @@ const BodyApp = () => {
 function App() {
   document.title = "Movie Finder"
   return (    
-    <div className="App">
+    <div className="App h-100">
       <LightDarkModeProvider>
         <BodyApp />
       </LightDarkModeProvider>    
