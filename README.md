@@ -11,7 +11,7 @@ Then click in poster and go to movie details (with name, year and synopsis). <br
 ![Desktop](readme-documents/MovieFinderDesktop.gif)
 
 ## Mobile
-![Mobile](readme-documents/MovieFinderMobile.gif)
+![Mobile](readme-documents/MovieFInderMobile.gif)
 
 # Tech Stack
 - React
