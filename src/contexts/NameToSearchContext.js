@@ -7,7 +7,6 @@ const NameToSearchProvider = (props) => {
     const [nameToSearch, setNameToSearch] = useState("");
 
     const newNameToSearch = (name) => {
-        console.log(name);
         setNameToSearch(name);
     }
     

@@ -20,7 +20,6 @@ const ListMoviesFounded = () => {
         let data = await response.json()
         setResponseAPI(data.Response)
         if(data.Response === "True") setMovieList(data.Search);
-        console.log(data)
     }
     
     const handleClick = (e) => {

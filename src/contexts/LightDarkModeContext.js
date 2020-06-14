@@ -8,7 +8,6 @@ const LightDarkModeProvider = (props) => {
     
     const toggleLightDarkMode = () => {
         setIsDarkMode(!isDarkMode);
-        console.log("Alterando modo")
     }
 
 

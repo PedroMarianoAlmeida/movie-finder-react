@@ -4,14 +4,12 @@ import { NameToSearchContext } from '../../contexts/NameToSearchContext';
 
 const SearchMovieForm = () => {
     const [nameToSearch, setLocalNameToSearch] = useState("");
-    const [finalNameToSearch, setFinalNameToSearch] = useState("");
     const { isDarkMode } = useContext(LightDarkModeContext);
     const { newNameToSearch } = useContext(NameToSearchContext);
     
     const handleSubmit = (e) => {
         e.preventDefault();        
         setLocalNameToSearch("");
-        console.log(nameToSearch);
         newNameToSearch(nameToSearch);
     }
 
