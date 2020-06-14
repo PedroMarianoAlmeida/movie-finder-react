@@ -1,21 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { NameToSearchContext } from './../../contexts/NameToSearchContext'
 
 import SearchMovieForm from './SearchMovieForm';
 import ListMoviesFounded from './ListMoviesFounded';
-import NameToSearchProvider from './../../contexts/NameToSearchContext'
+import NewSearch from './NewSearch';
 
 const HomePage = () => {
+    const { nameToSearch } = useContext( NameToSearchContext );
+
     return (
-        <NameToSearchProvider>
+        
             <div className='mt-5 pt-3 container'>
                 <div className='row justify-content-center'>                   
-                    
-                    <SearchMovieForm />    
-                    <ListMoviesFounded />
+                    <div className="col-12">
+                        {nameToSearch === "" ? <SearchMovieForm /> : <NewSearch />}
+                    </div>
+
+                    <div className="col-12">    
+                        <ListMoviesFounded />
+                    </div>
                                        
                 </div>
             </div>
-        </NameToSearchProvider>
+        
 
       );
 }

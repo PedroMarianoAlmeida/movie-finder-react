@@ -46,7 +46,7 @@ const ListMoviesFounded = () => {
     }
     
     return (
-        <div>
+        <div className="d-flex justify-content-center">
             {toRender()}
         </div>
     );

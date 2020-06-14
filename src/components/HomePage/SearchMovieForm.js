@@ -20,16 +20,15 @@ const SearchMovieForm = () => {
     }
 
     return ( 
-        <div className="col-12">
-            <form onSubmit={handleSubmit} className="d-flex justify-content-center">
-                <div className="form-group">
-                    <label className={`w-100 ${isDarkMode ? 'text-white' : ''}`}>Movie/Serie name to search</label>
-                    <input type="text" value={nameToSearch} required onChange={handleChange}
-                    className={`form-text w-100 text-center ${isDarkMode? 'text-white bg-dark' : ''} `}/>               
-                    <input type="submit" value="Search" className={`my-2 w-100 btn ${isDarkMode? 'btn-dark' : 'btn-primary' }`}/>
-                </div>
-            </form>
-        </div>
+        
+        <form onSubmit={handleSubmit} className="d-flex justify-content-center">
+            <div className="form-group">
+                <label className={`w-100 ${isDarkMode ? 'text-white' : ''}`}>Movie/Serie name to search</label>
+                <input type="text" value={nameToSearch} required onChange={handleChange}
+                className={`form-text w-100 text-center ${isDarkMode? 'text-white bg-dark' : ''} `}/>               
+                <input type="submit" value="Search" className={`my-2 w-100 btn ${isDarkMode? 'btn-dark' : 'btn-primary' }`}/>
+            </div>
+        </form>      
 
      );
 }
