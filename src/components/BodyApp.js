@@ -5,7 +5,7 @@ import {BrowserRouter, Route} from "react-router-dom"
 import IdMovieProvider from './../contexts/IdMovieContext'
 import { LightDarkModeContext } from './../contexts/LightDarkModeContext';
 
-import SearchMovieForm from './SearchMovieForm'
+import HomePage from './HomePage/HomePage';
 import MovieDetails from './MovieDetails';
 import Header from './Header/Header';
 import About from './About';
@@ -20,7 +20,7 @@ const BodyApp = () => {
               <Header />
               <IdMovieProvider>                 
                                             
-                <Route path="/" exact component={SearchMovieForm} />
+                <Route path="/" exact component={HomePage} />
                 <Route path="/details" component={MovieDetails} />
                 <Route path="/about" component={About} />                
                     

@@ -1,17 +1,19 @@
 import React, {useState, useEffect, useContext} from 'react';
-import { IdMovieContext } from '../contexts/IdMovieContext';
+import { IdMovieContext } from '../../contexts/IdMovieContext';
 import { NavLink } from 'react-router-dom'
 import Carousel from 'react-bootstrap/Carousel';
+import { NameToSearchContext } from '../../contexts/NameToSearchContext';
 
-const ListMoviesFounded = (props) => {     
+const ListMoviesFounded = () => {     
     const [movieList, setMovieList] = useState([]);
     const [responseAPI, setResponseAPI] = useState(null);
 
+    const { nameToSearch } = useContext(NameToSearchContext);
     const { newIdMovie } = useContext(IdMovieContext);
     
     useEffect(() => {
-        if (props.name !== "") getMoviesList(props.name);
-     }, [props.name]);
+        if ( nameToSearch !== "") getMoviesList(nameToSearch);
+     }, [nameToSearch]);
     
     async function getMoviesList(name) {
         let response = await fetch(`https://www.omdbapi.com/?s=${name}&apikey=ab72c6b9`);
