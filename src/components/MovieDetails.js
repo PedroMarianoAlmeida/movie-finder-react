@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import { IdMovieContext }  from './../contexts/IdMovieContext';
 import { LightDarkModeContext } from '../contexts/LightDarkModeContext';
 import useFetch from './../custom-hooks/useFetch';
+import API_KEYS from './../api-keys'
 
 const MovieDetails = () => {
 
@@ -11,7 +12,7 @@ const MovieDetails = () => {
   const configurationUseFetch = {
     url: "https://www.omdbapi.com/?",
     errorAPIvalue:  [ "Response", "False", "Error"] ,
-    parameters: [ {i: idMovie}, {apiKey: "ab72c6b9"} ],
+    parameters: [ {i: idMovie}, {apiKey: API_KEYS.omdbapiKey} ],
     
     shouldRun: true,
     logResponses: true,

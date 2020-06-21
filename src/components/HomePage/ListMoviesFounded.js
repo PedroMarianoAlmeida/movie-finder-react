@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 import Carousel from 'react-bootstrap/Carousel';
 import { NameToSearchContext } from '../../contexts/NameToSearchContext';
 import useFetch from './../../custom-hooks/useFetch';
+import API_KEYS from '../../api-keys'
 
 const ListMoviesFounded = () => {   
     const { nameToSearch } = useContext(NameToSearchContext);
@@ -49,7 +50,7 @@ const ListMoviesFounded = () => {
 
     useEffect(() => {
         if ( nameToSearch !== "") {            
-            configurationUseFetch.parameters = [ {s: nameToSearch}, {apiKey: "ab72c6b9"} ];
+            configurationUseFetch.parameters = [ {s: nameToSearch}, {apiKey: API_KEYS.omdbapiKey} ];
             configurationUseFetch.shouldRun = true;
             setConfiguration(configurationUseFetch);
         }
