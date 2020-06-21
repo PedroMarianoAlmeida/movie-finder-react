@@ -5,10 +5,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import { NameToSearchContext } from '../../contexts/NameToSearchContext';
 import useFetch from './../../custom-hooks/useFetch';
 
-const ListMoviesFounded = () => {     
-    const [movieList, setMovieList] = useState([]);
-    const [responseAPI, setResponseAPI] = useState(null);
-
+const ListMoviesFounded = () => {   
     const { nameToSearch } = useContext(NameToSearchContext);
     const { newIdMovie } = useContext(IdMovieContext);
 
@@ -21,42 +18,20 @@ const ListMoviesFounded = () => {
 
         doWhenInactive: () => <h3>Enter a name to search above</h3>,
         doWhenFetching: () => <h3>...Loading</h3>,
-        doWhenFail: () => <h3>Movie not founded</h3>,
-        doWhenSuccess: (rawAnswer) => <h3>{JSON.stringify(rawAnswer)}</h3>
+        doWhenFail: () => <h4>Movie not founded</h4>,
+        doWhenSuccess: (rawAnswer) => renderWhenSuccess(rawAnswer)
     }
-
     const [newMovieList, setConfiguration] = useFetch(configurationUseFetch)
-    
-    useEffect(() => {
-        if ( nameToSearch !== "") {
-            getMoviesList(nameToSearch);
-            
-            configurationUseFetch.parameters = [ {s: nameToSearch}, {apiKey: "ab72c6b9"} ];
-            configurationUseFetch.shouldRun = true;
-            setConfiguration(configurationUseFetch);
-        }
-     }, [nameToSearch]);
-    
-    async function getMoviesList(name) {
-        let response = await fetch(`https://www.omdbapi.com/?s=${name}&apikey=ab72c6b9`);
-        let data = await response.json()
-        setResponseAPI(data.Response)
-        if(data.Response === "True") setMovieList(data.Search);
-    }
-    
-    const handleClick = (e) => {
-        console.log(e.target.id);
-        newIdMovie(e.target.id);
-    }
 
-    const toRender = () => {
-        if(responseAPI === 'False') { return(<h4>Movie not found!</h4>) };
-        return (
+    const renderWhenSuccess = (myReturnAPI) => {
+        console.log( myReturnAPI.Search );
+        
+        return(
             <Carousel>
-                {movieList.map( movie => {
+                {myReturnAPI.Search.map( movie => {
                     return (
                         <Carousel.Item key={movie.imdbID}>
-                           <NavLink to="/details">                                
+                        <NavLink to="/details">                                
                                 <img className="" src={movie.Poster} alt={`${movie.Title} poster`} id={movie.imdbID} onClick={handleClick}/>
                             </NavLink> 
                         </Carousel.Item>
@@ -64,12 +39,24 @@ const ListMoviesFounded = () => {
                 })}
             </Carousel>
         )
+        
     }
-    
-    return (
-        <div className="d-flex justify-content-center">
-            {toRender()}
 
+    const handleClick = (e) => {
+        console.log(e.target.id);
+        newIdMovie(e.target.id);
+    }
+
+    useEffect(() => {
+        if ( nameToSearch !== "") {            
+            configurationUseFetch.parameters = [ {s: nameToSearch}, {apiKey: "ab72c6b9"} ];
+            configurationUseFetch.shouldRun = true;
+            setConfiguration(configurationUseFetch);
+        }
+     }, [nameToSearch]);   
+
+    return (
+        <div className="d-flex justify-content-center">           
             {newMovieList}
         </div>
     );
