@@ -18,7 +18,7 @@ const ListMoviesFounded = () => {
 
         doWhenInactive: () => <h3>Enter a name to search above</h3>,
         doWhenFetching: () => <h3>...Loading</h3>,
-        doWhenFail: () => <h4>Movie not founded</h4>,
+        doWhenFail: (error) => <h4>Movie not founded</h4>,
         doWhenSuccess: (rawAnswer) => renderWhenSuccess(rawAnswer)
     }
     const [newMovieList, setConfiguration] = useFetch(configurationUseFetch)
@@ -43,7 +43,7 @@ const ListMoviesFounded = () => {
     }
 
     const handleClick = (e) => {
-        console.log(e.target.id);
+        //console.log(e.target.id);
         newIdMovie(e.target.id);
     }
 

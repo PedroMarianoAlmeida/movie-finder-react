@@ -83,6 +83,7 @@ const useFetch = (configurationParam) => {
                 if(result[configuration.errorAPIvalue[0]] === configuration.errorAPIvalue[1] ) {
                     customizeError = true;
                     console.log("Customize Error: ", result[configuration.errorAPIvalue[2]])
+                    setAnswer( configuration.doWhenFail( result ) );
                     throw Error();                    
                 }
 
@@ -93,12 +94,14 @@ const useFetch = (configurationParam) => {
                 
                 setAnswer( configuration.doWhenSuccess( result ) );
             }
-            catch (err){
-                if (configuration.logResponses) {
-                     if (!customizeError) console.log( "Fetch error: ", err.message );
-                    console.log( "Staus: Fail");
-                }
-                setAnswer( configuration.doWhenFail( err, result ) );
+            catch (err){                                 
+                if (!customizeError) {
+                    if (configuration.logResponses) {
+                        console.log( "Fetch error: ", err.message );
+                        console.log( "Staus: Fail");
+                    }    
+                    setAnswer( configuration.doWhenFail( err ) );
+                }                  
             }      
           }
 
