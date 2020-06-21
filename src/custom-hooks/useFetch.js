@@ -79,12 +79,13 @@ const useFetch = (configurationParam) => {
                 if(!response.ok) throw Error(response.statusText);
     
                 result = await response.json();
-                
-                if(result[configuration.errorAPIvalue[0]] === configuration.errorAPIvalue[1] ) {
-                    customizeError = true;
-                    console.log("Customize Error: ", result[configuration.errorAPIvalue[2]])
-                    setAnswer( configuration.doWhenFail( result ) );
-                    throw Error();                    
+                if(Object.keys(configuration).includes("errorAPIvalue") ) {
+                    if(result[configuration.errorAPIvalue[0]] === configuration.errorAPIvalue[1] ) {
+                        customizeError = true;
+                        console.log("Customize Error: ", result[configuration.errorAPIvalue[2]])
+                        setAnswer( configuration.doWhenFail( result ) );
+                        throw Error();                    
+                    }
                 }
 
                 if (configuration.logResponses) {

@@ -1,55 +1,49 @@
 import React, {useContext, useEffect, useState} from 'react';
 import { IdMovieContext }  from './../contexts/IdMovieContext';
 import { LightDarkModeContext } from '../contexts/LightDarkModeContext';
+import useFetch from './../custom-hooks/useFetch';
 
 const MovieDetails = () => {
 
   const { idMovie } = useContext(IdMovieContext);
   const { isDarkMode } = useContext(LightDarkModeContext);
 
- const [movieDetails, setMovieDatails] = useState("");
+  const configurationUseFetch = {
+    url: "https://www.omdbapi.com/?",
+    errorAPIvalue:  [ "Response", "False", "Error"] ,
+    parameters: [ {i: idMovie}, {apiKey: "ab72c6b9"} ],
+    
+    shouldRun: true,
+    logResponses: true,
 
-  async function getMovieDetails(id) { 
-    let response = await fetch(`https://www.omdbapi.com/?i=${id}&apikey=ab72c6b9`);
-    let data = await response.json();
-    console.log(data);
-    if(data.Response !== "False") setMovieDatails(data);    
-  };
+    doWhenInactive: () => <h1 className={`mt-5 pt-3 ${isDarkMode? 'text-white' : '' }`}>Select a movie in HomePage!</h1>,
+    doWhenFetching: () => <h3>...Loading</h3>,
+    doWhenFail: (error) => <h1 className={`mt-5 pt-3 ${isDarkMode? 'text-white' : '' }`}>Movie not found!</h1>,
+    doWhenSuccess: (rawAnswer) => renderWhenSuccess(rawAnswer)
+}
 
-  useEffect( () => {  
-    if(!movieDetails) getMovieDetails(idMovie)
-  });
+const [newMovieDetails, setConfiguration] = useFetch(configurationUseFetch);
 
-  const toRender = () => {
-    if(!movieDetails) return <h1 className={`mt-5 pt-3 ${isDarkMode? 'text-white' : '' }`}>Movie not found!</h1>
-    return(
-      <div className='mt-5 pt-3 container'>
-        <div className='row justify-content-center'>
-          <div className="col-12 col-lg-6">
-            <h1 className={isDarkMode? 'text-white': ''}>{movieDetails.Title} ({movieDetails.Year})</h1>
-            <p className={isDarkMode? 'text-white': ''}>{movieDetails.Plot}</p>
-          </div>
+ const renderWhenSuccess = (myReturnAPI) => {
+  return(
+    <div className='mt-5 pt-3 container'>
+      <div className='row justify-content-center'>
+        <div className="col-12 col-lg-6">
+          <h1 className={isDarkMode? 'text-white': ''}>{myReturnAPI.Title} ({myReturnAPI.Year})</h1>
+          <p className={isDarkMode? 'text-white': ''}>{myReturnAPI.Plot}</p>
+        </div>
 
-          <div className="col-12 col-lg-6 d-flex justify-content-center">
-            <img src={movieDetails.Poster} alt={`${movieDetails.Title} poster`} className="img-thumbnail"/>
-          </div>
+        <div className="col-12 col-lg-6 d-flex justify-content-center">
+          <img src={myReturnAPI.Poster} alt={`${myReturnAPI.Title} poster`} className="img-thumbnail"/>
         </div>
       </div>
-
-
-
-
-
-      
-        
-
-     
-    )
-  }
+    </div>
+  )
+ }
 
   return (
     <div>
-      { toRender() }
+      {newMovieDetails}
     </div>
   );
 }
