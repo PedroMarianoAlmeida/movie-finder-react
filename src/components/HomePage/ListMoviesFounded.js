@@ -3,6 +3,7 @@ import { IdMovieContext } from '../../contexts/IdMovieContext';
 import { NavLink } from 'react-router-dom'
 import Carousel from 'react-bootstrap/Carousel';
 import { NameToSearchContext } from '../../contexts/NameToSearchContext';
+import useFetch from './../../custom-hooks/useFetch';
 
 const ListMoviesFounded = () => {     
     const [movieList, setMovieList] = useState([]);
@@ -10,9 +11,30 @@ const ListMoviesFounded = () => {
 
     const { nameToSearch } = useContext(NameToSearchContext);
     const { newIdMovie } = useContext(IdMovieContext);
+
+    const configurationUseFetch = {
+        url: "https://www.omdbapi.com/?",
+        errorAPIvalue:  [ "Response", "False", "Error"] ,
+        
+        shouldRun: false,
+        logResponses: true,
+
+        doWhenInactive: () => <h3>Enter a name to search above</h3>,
+        doWhenFetching: () => <h3>...Loading</h3>,
+        doWhenFail: () => <h3>Movie not founded</h3>,
+        doWhenSuccess: (rawAnswer) => <h3>{JSON.stringify(rawAnswer)}</h3>
+    }
+
+    const [newMovieList, setConfiguration] = useFetch(configurationUseFetch)
     
     useEffect(() => {
-        if ( nameToSearch !== "") getMoviesList(nameToSearch);
+        if ( nameToSearch !== "") {
+            getMoviesList(nameToSearch);
+            
+            configurationUseFetch.parameters = [ {s: nameToSearch}, {apiKey: "ab72c6b9"} ];
+            configurationUseFetch.shouldRun = true;
+            setConfiguration(configurationUseFetch);
+        }
      }, [nameToSearch]);
     
     async function getMoviesList(name) {
@@ -47,6 +69,8 @@ const ListMoviesFounded = () => {
     return (
         <div className="d-flex justify-content-center">
             {toRender()}
+
+            {newMovieList}
         </div>
     );
 }
