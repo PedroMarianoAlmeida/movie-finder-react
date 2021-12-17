@@ -8,7 +8,7 @@ const About = () => {
           <h1>About</h1>
         </div>
 
-        <div className="col-12 mt-4">
+        <div className="col-12 mt-3">
           <p>
             This is a WebApp made in React, it consumes the{" "}
             <a
@@ -22,8 +22,8 @@ const About = () => {
             box.
           </p>
           <p>
-            This tool is part of the Pedro Almeida portfolio TESTE. Please check
-            my website in the footer section to contact me and/or see my other
+            This tool is part of the Pedro Almeida portfolio. Please check my
+            website in the footer section to contact me and/or see my other
             projects.
           </p>
         </div>
